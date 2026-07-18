@@ -1,0 +1,829 @@
+{
+ "14341": {
+  "id": 14341,
+  "name": "Rune Thread",
+  "quality": 1,
+  "icon": "spell_shadow_antimagicshell"
+ },
+ "21840": {
+  "id": 21840,
+  "name": "Bolt of Netherweave",
+  "quality": 1,
+  "icon": "inv_fabric_netherweave_bolt",
+  "recipe": {
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 21877,
+     "count": 6
+    }
+   ]
+  }
+ },
+ "21842": {
+  "id": 21842,
+  "name": "Bolt of Imbued Netherweave",
+  "quality": 2,
+  "icon": "inv_fabric_netherweave_bolt_imbued",
+  "recipe": {
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 21840,
+     "count": 3
+    },
+    {
+     "id": 22445,
+     "count": 2
+    }
+   ]
+  }
+ },
+ "21845": {
+  "id": 21845,
+  "name": "Primal Mooncloth",
+  "quality": 3,
+  "icon": "inv_fabric_moonrag_primal",
+  "recipe": {
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 21842,
+     "count": 1
+    },
+    {
+     "id": 21886,
+     "count": 1
+    },
+    {
+     "id": 21885,
+     "count": 1
+    }
+   ]
+  }
+ },
+ "21870": {
+  "id": 21870,
+  "name": "Frozen Shadoweave Boots",
+  "quality": 4,
+  "icon": "inv_boots_cloth_03",
+  "recipe": {
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 24272,
+     "count": 8
+    },
+    {
+     "id": 21885,
+     "count": 12
+    },
+    {
+     "id": 21881,
+     "count": 2
+    }
+   ]
+  }
+ },
+ "21876": {
+  "id": 21876,
+  "name": "Primal Mooncloth Bag",
+  "quality": 3,
+  "icon": "inv_misc_bag_25_mooncloth",
+  "recipe": {
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 21845,
+     "count": 8
+    },
+    {
+     "id": 21881,
+     "count": 4
+    }
+   ]
+  }
+ },
+ "21877": {
+  "id": 21877,
+  "name": "Netherweave Cloth",
+  "quality": 1,
+  "icon": "inv_fabric_netherweave"
+ },
+ "21881": {
+  "id": 21881,
+  "name": "Netherweb Spider Silk",
+  "quality": 1,
+  "icon": "spell_nature_web"
+ },
+ "21884": {
+  "id": 21884,
+  "name": "Primal Fire",
+  "quality": 2,
+  "icon": "inv_elemental_primal_fire",
+  "recipe": {
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 22574,
+     "count": 10
+    }
+   ]
+  }
+ },
+ "21885": {
+  "id": 21885,
+  "name": "Primal Water",
+  "quality": 2,
+  "icon": "inv_elemental_primal_water",
+  "recipe": {
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 22578,
+     "count": 10
+    }
+   ]
+  }
+ },
+ "21886": {
+  "id": 21886,
+  "name": "Primal Life",
+  "quality": 2,
+  "icon": "inv_elemental_primal_life",
+  "recipe": {
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 22575,
+     "count": 10
+    }
+   ]
+  }
+ },
+ "21887": {
+  "id": 21887,
+  "name": "Knothide Leather",
+  "quality": 1,
+  "icon": "inv_misc_leatherscrap_10",
+  "recipe": {
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 25649,
+     "count": 5
+    }
+   ]
+  }
+ },
+ "22445": {
+  "id": 22445,
+  "name": "Arcane Dust",
+  "quality": 1,
+  "icon": "inv_enchant_dustarcane"
+ },
+ "22451": {
+  "id": 22451,
+  "name": "Primal Air",
+  "quality": 2,
+  "icon": "inv_elemental_primal_air",
+  "recipe": {
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 22572,
+     "count": 10
+    }
+   ]
+  }
+ },
+ "22452": {
+  "id": 22452,
+  "name": "Primal Earth",
+  "quality": 2,
+  "icon": "inv_elemental_primal_earth",
+  "recipe": {
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 22573,
+     "count": 10
+    }
+   ]
+  }
+ },
+ "22456": {
+  "id": 22456,
+  "name": "Primal Shadow",
+  "quality": 2,
+  "icon": "inv_elemental_primal_shadow",
+  "recipe": {
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 22577,
+     "count": 10
+    }
+   ]
+  }
+ },
+ "22457": {
+  "id": 22457,
+  "name": "Primal Mana",
+  "quality": 2,
+  "icon": "inv_elemental_primal_mana",
+  "recipe": {
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 22576,
+     "count": 10
+    }
+   ]
+  }
+ },
+ "22572": {
+  "id": 22572,
+  "name": "Mote of Air",
+  "quality": 1,
+  "icon": "inv_elemental_mote_air01"
+ },
+ "22573": {
+  "id": 22573,
+  "name": "Mote of Earth",
+  "quality": 1,
+  "icon": "inv_elemental_mote_earth01"
+ },
+ "22574": {
+  "id": 22574,
+  "name": "Mote of Fire",
+  "quality": 1,
+  "icon": "inv_elemental_mote_fire01"
+ },
+ "22575": {
+  "id": 22575,
+  "name": "Mote of Life",
+  "quality": 1,
+  "icon": "inv_elemental_mote_life01"
+ },
+ "22576": {
+  "id": 22576,
+  "name": "Mote of Mana",
+  "quality": 1,
+  "icon": "inv_elemental_mote_mana"
+ },
+ "22577": {
+  "id": 22577,
+  "name": "Mote of Shadow",
+  "quality": 1,
+  "icon": "inv_elemental_mote_shadow01"
+ },
+ "22578": {
+  "id": 22578,
+  "name": "Mote of Water",
+  "quality": 1,
+  "icon": "inv_elemental_mote_water01"
+ },
+ "23424": {
+  "id": 23424,
+  "name": "Fel Iron Ore",
+  "quality": 1,
+  "icon": "inv_ore_feliron"
+ },
+ "23425": {
+  "id": 23425,
+  "name": "Adamantite Ore",
+  "quality": 1,
+  "icon": "inv_ore_adamantium"
+ },
+ "23426": {
+  "id": 23426,
+  "name": "Khorium Ore",
+  "quality": 2,
+  "icon": "inv_ore_khorium"
+ },
+ "23427": {
+  "id": 23427,
+  "name": "Eternium Ore",
+  "quality": 2,
+  "icon": "inv_ore_eternium"
+ },
+ "23436": {
+  "id": 23436,
+  "name": "Living Ruby",
+  "quality": 3,
+  "icon": "inv_jewelcrafting_livingruby_02"
+ },
+ "23445": {
+  "id": 23445,
+  "name": "Fel Iron Bar",
+  "quality": 1,
+  "icon": "inv_ingot_feliron",
+  "recipe": {
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 23424,
+     "count": 2
+    }
+   ]
+  }
+ },
+ "23446": {
+  "id": 23446,
+  "name": "Adamantite Bar",
+  "quality": 1,
+  "icon": "inv_ingot_10",
+  "recipe": {
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 23425,
+     "count": 2
+    }
+   ]
+  }
+ },
+ "23447": {
+  "id": 23447,
+  "name": "Eternium Bar",
+  "quality": 2,
+  "icon": "inv_ingot_11",
+  "recipe": {
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 23427,
+     "count": 2
+    }
+   ]
+  }
+ },
+ "23448": {
+  "id": 23448,
+  "name": "Felsteel Bar",
+  "quality": 2,
+  "icon": "inv_ingot_felsteel",
+  "recipe": {
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 23445,
+     "count": 3
+    },
+    {
+     "id": 23447,
+     "count": 2
+    }
+   ]
+  }
+ },
+ "23449": {
+  "id": 23449,
+  "name": "Khorium Bar",
+  "quality": 2,
+  "icon": "inv_ingot_09",
+  "recipe": {
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 23426,
+     "count": 2
+    }
+   ]
+  }
+ },
+ "23540": {
+  "id": 23540,
+  "name": "Felsteel Longblade",
+  "quality": 4,
+  "icon": "inv_sword_59",
+  "recipe": {
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 23449,
+     "count": 10
+    },
+    {
+     "id": 23448,
+     "count": 10
+    },
+    {
+     "id": 23571,
+     "count": 6
+    },
+    {
+     "id": 23572,
+     "count": 2
+    }
+   ]
+  }
+ },
+ "23571": {
+  "id": 23571,
+  "name": "Primal Might",
+  "quality": 3,
+  "icon": "spell_nature_lightningoverload",
+  "recipe": {
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 22452,
+     "count": 1
+    },
+    {
+     "id": 21885,
+     "count": 1
+    },
+    {
+     "id": 22451,
+     "count": 1
+    },
+    {
+     "id": 21884,
+     "count": 1
+    },
+    {
+     "id": 22457,
+     "count": 1
+    }
+   ]
+  }
+ },
+ "23572": {
+  "id": 23572,
+  "name": "Primal Nether",
+  "quality": 3,
+  "icon": "inv_elemental_primal_nether"
+ },
+ "23573": {
+  "id": 23573,
+  "name": "Hardened Adamantite Bar",
+  "quality": 1,
+  "icon": "inv_ingot_adamantite",
+  "recipe": {
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 23446,
+     "count": 10
+    }
+   ]
+  }
+ },
+ "23746": {
+  "id": 23746,
+  "name": "Adamantite Rifle",
+  "quality": 2,
+  "icon": "inv_weapon_rifle_04",
+  "recipe": {
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 23782,
+     "count": 3
+    },
+    {
+     "id": 23784,
+     "count": 2
+    },
+    {
+     "id": 23783,
+     "count": 4
+    }
+   ]
+  }
+ },
+ "23782": {
+  "id": 23782,
+  "name": "Fel Iron Casing",
+  "quality": 1,
+  "icon": "inv_gizmo_felironcasing",
+  "recipe": {
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 23445,
+     "count": 3
+    }
+   ]
+  }
+ },
+ "23783": {
+  "id": 23783,
+  "name": "Handful of Fel Iron Bolts",
+  "quality": 1,
+  "icon": "inv_gizmo_felironbolts",
+  "recipe": {
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 23445,
+     "count": 1
+    }
+   ]
+  }
+ },
+ "23784": {
+  "id": 23784,
+  "name": "Adamantite Frame",
+  "quality": 1,
+  "icon": "inv_gizmo_adamantiteframe",
+  "recipe": {
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 23446,
+     "count": 4
+    },
+    {
+     "id": 22452,
+     "count": 1
+    }
+   ]
+  }
+ },
+ "23785": {
+  "id": 23785,
+  "name": "Hardened Adamantite Tube",
+  "quality": 1,
+  "icon": "inv_gizmo_hardenedadamantitetube",
+  "recipe": {
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 23573,
+     "count": 3
+    }
+   ]
+  }
+ },
+ "23786": {
+  "id": 23786,
+  "name": "Khorium Power Core",
+  "quality": 1,
+  "icon": "inv_gizmo_khoriumpowercore",
+  "recipe": {
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 23449,
+     "count": 3
+    },
+    {
+     "id": 21884,
+     "count": 1
+    }
+   ]
+  }
+ },
+ "23787": {
+  "id": 23787,
+  "name": "Felsteel Stabilizer",
+  "quality": 1,
+  "icon": "inv_gizmo_felstabilizer",
+  "recipe": {
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 23448,
+     "count": 2
+    }
+   ]
+  }
+ },
+ "23793": {
+  "id": 23793,
+  "name": "Heavy Knothide Leather",
+  "quality": 1,
+  "icon": "inv_misc_leatherscrap_11",
+  "recipe": {
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 21887,
+     "count": 5
+    }
+   ]
+  }
+ },
+ "23824": {
+  "id": 23824,
+  "name": "Rocket Boots Xtreme",
+  "quality": 3,
+  "icon": "inv_gizmo_rocketboot_01",
+  "recipe": {
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 23793,
+     "count": 8
+    },
+    {
+     "id": 23786,
+     "count": 2
+    },
+    {
+     "id": 23785,
+     "count": 2
+    },
+    {
+     "id": 23787,
+     "count": 4
+    }
+   ]
+  }
+ },
+ "24262": {
+  "id": 24262,
+  "name": "Spellstrike Pants",
+  "quality": 4,
+  "icon": "inv_pants_cloth_14",
+  "recipe": {
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 24271,
+     "count": 10
+    },
+    {
+     "id": 23571,
+     "count": 5
+    },
+    {
+     "id": 23572,
+     "count": 1
+    }
+   ]
+  }
+ },
+ "24266": {
+  "id": 24266,
+  "name": "Spellstrike Hood",
+  "quality": 4,
+  "icon": "inv_helmet_27",
+  "recipe": {
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 24271,
+     "count": 10
+    },
+    {
+     "id": 23571,
+     "count": 5
+    },
+    {
+     "id": 23572,
+     "count": 1
+    }
+   ]
+  }
+ },
+ "24271": {
+  "id": 24271,
+  "name": "Spellcloth",
+  "quality": 3,
+  "icon": "inv_fabric_spellfire",
+  "recipe": {
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 21842,
+     "count": 1
+    },
+    {
+     "id": 22457,
+     "count": 1
+    },
+    {
+     "id": 21884,
+     "count": 1
+    }
+   ]
+  }
+ },
+ "24272": {
+  "id": 24272,
+  "name": "Shadowcloth",
+  "quality": 3,
+  "icon": "inv_fabric_felcloth_ebon",
+  "recipe": {
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 21842,
+     "count": 1
+    },
+    {
+     "id": 22456,
+     "count": 1
+    },
+    {
+     "id": 21884,
+     "count": 1
+    }
+   ]
+  }
+ },
+ "25649": {
+  "id": 25649,
+  "name": "Knothide Leather Scraps",
+  "quality": 1,
+  "icon": "inv_misc_leatherscrap_09"
+ },
+ "25708": {
+  "id": 25708,
+  "name": "Thick Clefthoof Leather",
+  "quality": 1,
+  "icon": "inv_misc_leatherscrap_14"
+ },
+ "29529": {
+  "id": 29529,
+  "name": "Drums of Battle",
+  "quality": 2,
+  "icon": "inv_misc_drum_02",
+  "recipe": {
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 23793,
+     "count": 6
+    },
+    {
+     "id": 25708,
+     "count": 4
+    }
+   ]
+  }
+ },
+ "30038": {
+  "id": 30038,
+  "name": "Belt of Blasting",
+  "quality": 4,
+  "icon": "inv_belt_13",
+  "recipe": {
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 30183,
+     "count": 2
+    },
+    {
+     "id": 21842,
+     "count": 4
+    },
+    {
+     "id": 21884,
+     "count": 15
+    },
+    {
+     "id": 14341,
+     "count": 2
+    }
+   ]
+  }
+ },
+ "30183": {
+  "id": 30183,
+  "name": "Nether Vortex",
+  "quality": 4,
+  "icon": "inv_elemental_mote_nether"
+ },
+ "32478": {
+  "id": 32478,
+  "name": "Deathblow X11 Goggles",
+  "quality": 4,
+  "icon": "inv_gizmo_newgoggles",
+  "recipe": {
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 23793,
+     "count": 6
+    },
+    {
+     "id": 23786,
+     "count": 1
+    },
+    {
+     "id": 23785,
+     "count": 2
+    },
+    {
+     "id": 23787,
+     "count": 4
+    },
+    {
+     "id": 23572,
+     "count": 1
+    },
+    {
+     "id": 23436,
+     "count": 2
+    }
+   ]
+  }
+ }
+}
