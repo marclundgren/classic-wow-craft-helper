@@ -3,15 +3,20 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { Item, ItemDb, Order, SearchResult } from "@/lib/types";
 import { computePlan } from "@/lib/materials";
+import { formatMoney, parseMoney, splitMoney } from "@/lib/money";
 
 const STORAGE_KEY = "tbc-craft-planner-v1";
 const SUGGESTED_IDS = [32478, 24266, 21876]; // goggles, spellstrike hood, mooncloth bag
+
+/** Unit prices as the user typed them, keyed by item id. */
+type PriceInputs = Record<number, string>;
 
 type Persisted = {
   orders: Order[];
   buyDirect: number[];
   checked: number[];
   extraItems: ItemDb;
+  prices?: PriceInputs;
 };
 
 function iconUrl(icon: string) {
@@ -51,12 +56,27 @@ function ItemName({ item, id }: { item?: Item; id: number }) {
   );
 }
 
+/** Copper rendered in the game's gold / silver / copper denominations. */
+function Money({ copper }: { copper: number }) {
+  const { gold, silver, copper: c } = splitMoney(copper);
+  // Zero denominations are dropped, as in game — except when the whole
+  // amount is zero, which shows as "0c".
+  return (
+    <span className="money">
+      {gold > 0 && <span className="mg">{gold.toLocaleString("en-US")}g</span>}
+      {silver > 0 && <span className="ms">{silver}s</span>}
+      {(c > 0 || copper === 0) && <span className="mc">{c}c</span>}
+    </span>
+  );
+}
+
 export default function Planner({ initialItems }: { initialItems: ItemDb }) {
   const [db, setDb] = useState<ItemDb>(initialItems);
   const [orders, setOrders] = useState<Order[]>([]);
   const [buyDirect, setBuyDirect] = useState<ReadonlySet<number>>(new Set());
   const [checked, setChecked] = useState<ReadonlySet<number>>(new Set());
   const [expanded, setExpanded] = useState<ReadonlySet<number>>(new Set());
+  const [prices, setPrices] = useState<PriceInputs>({});
   const hydrated = useRef(false);
 
   // Restore persisted plan once on mount.
@@ -69,6 +89,7 @@ export default function Planner({ initialItems }: { initialItems: ItemDb }) {
         setOrders(data.orders ?? []);
         setBuyDirect(new Set(data.buyDirect ?? []));
         setChecked(new Set(data.checked ?? []));
+        setPrices(data.prices ?? {});
         setExpanded(new Set((data.orders ?? []).map((o) => o.id)));
       }
     } catch {
@@ -87,14 +108,49 @@ export default function Planner({ initialItems }: { initialItems: ItemDb }) {
       buyDirect: [...buyDirect],
       checked: [...checked],
       extraItems,
+      prices,
     };
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-  }, [db, orders, buyDirect, checked, initialItems]);
+  }, [db, orders, buyDirect, checked, prices, initialItems]);
 
   const plan = useMemo(
     () => computePlan(db, orders, buyDirect),
     [db, orders, buyDirect]
   );
+
+  /**
+   * Line totals (unit price × quantity) and the subtotal, all in copper.
+   * Rows without a usable price are simply left out of the sum and counted
+   * so the subtotal can say how much of the list it actually covers.
+   */
+  const costs = useMemo(() => {
+    const lines = new Map<number, number>();
+    let subtotal = 0;
+    let unpriced = 0;
+    for (const line of plan.raw) {
+      const unit = parseMoney(prices[line.id] ?? "");
+      if (unit === null) {
+        unpriced++;
+        continue;
+      }
+      const total = unit * line.count;
+      lines.set(line.id, total);
+      subtotal += total;
+    }
+    return { lines, subtotal, unpriced };
+  }, [plan.raw, prices]);
+
+  const setPrice = (id: number, value: string) => {
+    setPrices((prev) => {
+      if (value.trim() === "") {
+        if (!(id in prev)) return prev;
+        const next = { ...prev };
+        delete next[id];
+        return next;
+      }
+      return { ...prev, [id]: value };
+    });
+  };
 
   // ----- search state -----
   const [query, setQuery] = useState("");
@@ -217,9 +273,14 @@ export default function Planner({ initialItems }: { initialItems: ItemDb }) {
 
   const [copied, setCopied] = useState(false);
   const copyList = async () => {
-    const lines = plan.raw.map(
-      (line) => `${line.count}x ${db[line.id]?.name ?? `item #${line.id}`}`
-    );
+    const lines = plan.raw.map((line) => {
+      const text = `${line.count}x ${db[line.id]?.name ?? `item #${line.id}`}`;
+      const total = costs.lines.get(line.id);
+      return total === undefined ? text : `${text} — ${formatMoney(total)}`;
+    });
+    if (costs.subtotal > 0) {
+      lines.push(`Estimated subtotal: ${formatMoney(costs.subtotal)}`);
+    }
     try {
       await navigator.clipboard.writeText(lines.join("\n"));
       setCopied(true);
@@ -446,41 +507,88 @@ export default function Planner({ initialItems }: { initialItems: ItemDb }) {
                 Raw materials will tally up here once you add a work order.
               </p>
             ) : (
-              plan.raw.map((line) => {
-                const item = db[line.id];
-                const boughtCraftable = Boolean(item?.recipe);
-                return (
-                  <div
-                    className={`shop-row ${checked.has(line.id) ? "done" : ""}`}
-                    key={line.id}
-                  >
-                    <button
-                      className="checkbox"
-                      onClick={() => toggleChecked(line.id)}
-                      aria-label={`Mark ${item?.name ?? "item"} as gathered`}
+              <>
+                {plan.raw.map((line) => {
+                  const item = db[line.id];
+                  const boughtCraftable = Boolean(item?.recipe);
+                  const raw = prices[line.id] ?? "";
+                  const lineTotal = costs.lines.get(line.id);
+                  const badPrice = raw.trim() !== "" && lineTotal === undefined;
+                  const itemName = item?.name ?? `item #${line.id}`;
+                  return (
+                    <div
+                      className={`shop-row ${checked.has(line.id) ? "done" : ""}`}
+                      key={line.id}
                     >
-                      {checked.has(line.id) ? "✓" : ""}
-                    </button>
-                    <span className="count">{line.count}×</span>
-                    <ItemIcon icon={item?.icon ?? "inv_misc_questionmark"} />
-                    <ItemName item={item} id={line.id} />
-                    {boughtCraftable && (
-                      <>
-                        <span className="buy-tag" title="You chose to buy this instead of crafting it">
-                          buy
+                      <button
+                        className="checkbox"
+                        onClick={() => toggleChecked(line.id)}
+                        aria-label={`Mark ${item?.name ?? "item"} as gathered`}
+                      >
+                        {checked.has(line.id) ? "✓" : ""}
+                      </button>
+                      <span className="count">{line.count}×</span>
+                      <ItemIcon icon={item?.icon ?? "inv_misc_questionmark"} />
+                      <ItemName item={item} id={line.id} />
+                      {boughtCraftable && (
+                        <>
+                          <span className="buy-tag" title="You chose to buy this instead of crafting it">
+                            buy
+                          </span>
+                          <button
+                            className="mode-toggle"
+                            onClick={() => toggleBuy(line.id)}
+                            title="Craft this instead"
+                          >
+                            craft instead
+                          </button>
+                        </>
+                      )}
+                      <span className="price-cell">
+                        <input
+                          className={`price-input ${badPrice ? "bad" : ""}`}
+                          type="text"
+                          inputMode="decimal"
+                          value={raw}
+                          onChange={(e) => setPrice(line.id, e.target.value)}
+                          placeholder="ea."
+                          aria-label={`Unit price for ${itemName}`}
+                          aria-invalid={badPrice || undefined}
+                          title={
+                            badPrice
+                              ? "Try 12g50s, 75s, or 12.5 (gold)"
+                              : "Price for one — 12g50s, 75s, or 12.5 (gold)"
+                          }
+                        />
+                        <span className="line-total">
+                          {lineTotal === undefined ? (
+                            <span className="unpriced">—</span>
+                          ) : (
+                            <Money copper={lineTotal} />
+                          )}
                         </span>
-                        <button
-                          className="mode-toggle"
-                          onClick={() => toggleBuy(line.id)}
-                          title="Craft this instead"
-                        >
-                          craft instead
-                        </button>
-                      </>
+                      </span>
+                    </div>
+                  );
+                })}
+                <div className="subtotal-row">
+                  <span className="subtotal-label">Estimated subtotal</span>
+                  <span className="subtotal-value">
+                    {costs.subtotal > 0 ? (
+                      <Money copper={costs.subtotal} />
+                    ) : (
+                      <span className="unpriced">—</span>
                     )}
-                  </div>
-                );
-              })
+                  </span>
+                </div>
+                <p className="subtotal-note">
+                  {costs.unpriced === 0
+                    ? "Every material is priced."
+                    : costs.unpriced === plan.raw.length
+                      ? "Enter what one of each costs on your auction house to estimate the bill."
+                      : `${costs.unpriced} of ${plan.raw.length} materials still need a price.`}
+                </p>
+              </>
             )}
           </div>
         </section>
